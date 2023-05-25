@@ -1,44 +1,39 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import ReactCalendar from "react-calendar";
-import { add, format } from "date-fns";
-import {
-  OPENING_HOURS_BEGINNING,
-  OPENING_HOURS_END,
-} from "../../constants/config";
+import {format, formatISO, isBefore, parse  } from "date-fns";
+import { now, OPENING_HOURS_INTERVAL } from "../../constants/config";
+import { useRouter } from "next/router";
+import type { DateTime } from "@types";
+import { getOpeningTimes, roundToNearestMinutes } from "src/utils/helper";
+import type { Day } from "@prisma/client";
 
-interface indexProps {
+interface CalendarProps {
   days: Day[];
   closedDays: string[];
 }
 
-interface DateType {
-  justDate: Date | null;
-  dateTime: Date | null;
-}
+const index: FC<CalendarProps> = ({ days, closedDays }) => {
+  const router = useRouter();
 
-const index: FC<indexProps> = ({}) => {
-  const [date, setDate] = useState<DateType>({
+  const today = days.find((d) => d.dayOfWeek === now.getDay());
+  const rounded = roundToNearestMinutes(now, OPENING_HOURS_INTERVAL);
+  const closing = parse(today?.closeTime, "kk:mm", now);
+  const tooLate = !isBefore(rounded, closing);
+  if (tooLate) closedDays.push(formatISO(new Date().setHours(0, 0, 0, 0)));
+
+  const [date, setDate] = useState<DateTime>({
     justDate: null,
     dateTime: null,
   });
 
-  const getTimes = () => {
-    if (!date.justDate) return;
-
-    const { justDate } = date;
-
-    const beginning = add(justDate, { hours: OPENING_HOURS_BEGINNING });
-    const end = add(justDate, { hours: OPENING_HOURS_END });
-    const interval = 30;
-
-    const times = [];
-    for (let i = beginning; i <= end; i = add(i, { minutes: interval })) {
-      times.push(i);
+  useEffect(() => {
+    if (date.dateTime) {
+      localStorage.setItem("selectedTime", date.dateTime.toISOString());
+      void router.push("/menu");
     }
-    return times;
-  };
+  }, [date.dateTime, router]);
 
-  const times = getTimes();
+  const times = date.justDate && getOpeningTimes(date.justDate, days);
 
   return (
     <div className="flex h-screen flex-col items-center justify-center">
@@ -60,6 +55,7 @@ const index: FC<indexProps> = ({}) => {
           minDate={new Date()}
           className="REACT-CALENDAR p-2"
           view="month"
+          tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
           onClickDay={(date) =>
             setDate((prev) => ({ ...prev, justDate: date }))
           }

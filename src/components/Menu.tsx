@@ -7,14 +7,18 @@ import { capitalize, selectOptions } from "src/utils/helper";
 import { trpc } from "src/utils/trpc";
 import { format, parseISO } from "date-fns";
 
-const Menu: FC = ({ selectedTime, addToCart }) => {
+interface MenuProps {
+  selectedTime: string;
+}
+
+const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
   const { data: menuItems } = trpc.menu.getMenuItems.useQuery();
   const [filter, setFilter] = useState<undefined | string>("");
 
-  /* const filterMenuItems = menuItems?.filter((menuItem) => {
-    if(!filter) return true
-    return menuItem.categories.includes(filter)
-  }) */
+  const filterMenuItems = menuItems?.filter((menuItem) => {
+    if (!filter) return true;
+    return menuItem.categories.includes(filter);
+  });
 
   return (
     <div className="bg-white">
@@ -39,7 +43,7 @@ const Menu: FC = ({ selectedTime, addToCart }) => {
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {menuItems?.map((menuItem) => (
+          {filterMenuItems?.map((menuItem) => (
             <div key={menuItem.id} className="group relative">
               <div className="min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 hover:opacity-75 lg:h-80">
                 <div className="relative h-full w-full object-cover object-center lg:h-full lg:w-full">
@@ -58,7 +62,7 @@ const Menu: FC = ({ selectedTime, addToCart }) => {
                   </h3>
                   {/* <p className="mt-1 text-sm text-gray-500">
                     {menuItem.categories.map((c: string) => capitalize(c)).join(", ")}
-                  </p> */}
+                  </p>  */}
                 </div>
                 <p className="text-sm font-medium text-gray-900">
                   ${menuItem.price.toFixed(2)}

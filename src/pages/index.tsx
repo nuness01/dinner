@@ -1,6 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Calendar from "../components/Calendar";
+import { prisma } from "src/server/db/client";
+import { formatISO } from "date-fns";
+import { Day } from "@prisma/client";
 
 // import { trpc } from "~/utils/api";
 
@@ -24,5 +27,12 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
   );
 };
 
+export async function getServerSideProps() {
+  const days = await prisma.day.findMany();
+  const closedDays = (await prisma.closedDay.findMany()).map((d) =>
+    formatISO(d.date)
+  );
+  return { props: { days, closedDays } };
+}
 
 export default Home;

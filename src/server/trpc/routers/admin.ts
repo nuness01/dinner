@@ -75,13 +75,6 @@ export const adminRouter = router({
         imageKey: z.string(),
         name: z.string(),
         price: z.number(),
-        categories: z.array(
-          z.union([
-            z.literal("breakfast"),
-            z.literal("lunch"),
-            z.literal("dinner"),
-          ])
-        ),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -90,7 +83,6 @@ export const adminRouter = router({
         data: {
           imageKey,
           name,
-          
           price,
         },
       });

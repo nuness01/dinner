@@ -28,12 +28,6 @@ const Menu: FC = () => {
   const [preview, setPreview] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const { mutateAsync: createPresignedUrl } =
-    trpc.admin.createPresignedUrl.useMutation();
-  const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation();
-  const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery();
-  const {  mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation();
-
   useEffect(() => {
     if (!input.file) return;
     const objectUrl = URL.createObjectURL(input.file);
@@ -42,7 +36,19 @@ const Menu: FC = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [input.file]);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInput((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const { mutateAsync: createPresignedUrl } =
+    trpc.admin.createPresignedUrl.useMutation();
+  const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation();
+  const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery();
+  const { mutateAsync: deleteMenuItem } =
+    trpc.admin.deleteMenuItem.useMutation();
+
+  const handleFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.[0]) return setError("No file selected");
     if (e.target.files[0].size > MAX_FILE_SIZE)
       return setError("File size is too big");
@@ -57,8 +63,9 @@ const Menu: FC = () => {
       fileType: file.type,
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const data = {
-      fields,
+      ...fields,
       "Content-Type": file.type,
       file,
     };
@@ -82,11 +89,8 @@ const Menu: FC = () => {
     if (!key) throw new Error("Without key");
 
     await addItem({
-      name: input.name,
       imageKey: key,
-      categories: input.categories.map(
-        (c) => c.value as Exclude<Categories, "all">
-      ),
+      name: input.name,
       price: input.price,
     });
 
@@ -97,8 +101,8 @@ const Menu: FC = () => {
   };
 
   const handleDelete = async (imageKey: string, id: string) => {
-    await deleteMenuItem({id, imageKey })
-    void refetch()
+    await deleteMenuItem({ id, imageKey });
+    void refetch();
   };
 
   return (
