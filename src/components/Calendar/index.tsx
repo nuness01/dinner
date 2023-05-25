@@ -1,7 +1,10 @@
 import { type FC, useState } from "react";
 import ReactCalendar from "react-calendar";
 import { add, format } from "date-fns";
-import { OPENING_HOURS_BEGINNING, OPENING_HOURS_END } from "~/constants/config";
+import {
+  OPENING_HOURS_BEGINNING,
+  OPENING_HOURS_END,
+} from "../../constants/config";
 
 interface indexProps {
   days: Day[];

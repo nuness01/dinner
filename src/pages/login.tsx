@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { type ChangeEvent, type FC, useState } from "react";
 import { HiLockClosed } from "react-icons/hi";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "../utils/trpc";
 
 const login: FC = ({}) => {
   const router = useRouter();

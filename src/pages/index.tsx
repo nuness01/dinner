@@ -24,4 +24,5 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
   );
 };
 
+
 export default Home;
