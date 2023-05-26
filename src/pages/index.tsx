@@ -1,11 +1,11 @@
-import { type NextPage } from "next";
+import type { NextPage } from "next";
+import type { Day } from "@prisma/client";
 import Head from "next/head";
 import Calendar from "../components/Calendar";
 import { prisma } from "src/server/db/client";
 import { formatISO } from "date-fns";
-import { Day } from "@prisma/client";
 
-// import { trpc } from "~/utils/api";
+
 
 interface HomeProps {
   days: Day[];

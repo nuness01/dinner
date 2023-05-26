@@ -1,11 +1,14 @@
 import { type FC, useState, useEffect } from "react";
-import ReactCalendar from "react-calendar";
+import dynamic from 'next/dynamic'
 import {format, formatISO, isBefore, parse  } from "date-fns";
 import { now, OPENING_HOURS_INTERVAL } from "../../constants/config";
 import { useRouter } from "next/router";
 import type { DateTime } from "@types";
 import { getOpeningTimes, roundToNearestMinutes } from "src/utils/helper";
 import type { Day } from "@prisma/client";
+
+const DynamicCalendar = dynamic(() => import('react-calendar'), { ssr: false })
+
 
 interface CalendarProps {
   days: Day[];
@@ -17,7 +20,7 @@ const index: FC<CalendarProps> = ({ days, closedDays }) => {
 
   const today = days.find((d) => d.dayOfWeek === now.getDay());
   const rounded = roundToNearestMinutes(now, OPENING_HOURS_INTERVAL);
-  const closing = parse(today?.closeTime, "kk:mm", now);
+  const closing = parse(today!.closeTime, "kk:mm", now);
   const tooLate = !isBefore(rounded, closing);
   if (tooLate) closedDays.push(formatISO(new Date().setHours(0, 0, 0, 0)));
 
@@ -51,7 +54,7 @@ const index: FC<CalendarProps> = ({ days, closedDays }) => {
           ))}
         </div>
       ) : (
-        <ReactCalendar
+        <DynamicCalendar
           minDate={new Date()}
           className="REACT-CALENDAR p-2"
           view="month"

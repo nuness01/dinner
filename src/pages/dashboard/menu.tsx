@@ -1,13 +1,8 @@
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { type ChangeEvent, type FC, useState, useEffect } from "react";
 import type { MultiValue } from "react-select/dist/declarations/src";
 import { MAX_FILE_SIZE } from "src/constants/config";
-import { selectOptions } from "src/utils/helper";
 import { trpc } from "src/utils/trpc";
-import type { Categories } from "src/utils/types";
-
-const DynamicSelect = dynamic(() => import("react-select"), { ssr: false });
 
 type Input = {
   name: string;
@@ -92,6 +87,7 @@ const Menu: FC = () => {
       imageKey: key,
       name: input.name,
       price: input.price,
+      categories: [],
     });
 
     void refetch();
@@ -114,9 +110,7 @@ const Menu: FC = () => {
             className="h-12 rounded-sm border-none bg-gray-200"
             type="text"
             placeholder="name"
-            onChange={(e) =>
-              setInput((prev) => ({ ...prev, name: e.target.value }))
-            }
+            onChange={handleTextChange}
             value={input.name}
           />
 
@@ -129,15 +123,6 @@ const Menu: FC = () => {
               setInput((prev) => ({ ...prev, price: Number(e.target.value) }))
             }
             value={input.price}
-          />
-
-          <DynamicSelect
-            value={input.categories}
-            // @ts-expect-error - when using dynamic import, typescript doesn't know about the onChange prop
-            onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
-            isMulti
-            className="h-12"
-            options={selectOptions}
           />
 
           <label

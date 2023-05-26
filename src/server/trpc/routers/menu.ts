@@ -35,13 +35,12 @@ export const menuRouter = router({
         },
       });
 
-      // Each menu items only contains its AWS key. Extend all items with their actual img url
       const withUrls = await Promise.all(
         menuItems.map(async (menuItem) => {
           return {
             ...menuItem,
             url: await s3.getSignedUrlPromise("getObject", {
-              Bucket: "youtube-booking-software",
+              Bucket: "dinner-implementation",
               Key: menuItem.imageKey,
             }),
             quantity: input.find((item) => item.id === menuItem.id)?.quantity,

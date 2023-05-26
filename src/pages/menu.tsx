@@ -44,6 +44,8 @@ const MenuPage: FC = () => {
     setProductsInCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+
+
   useEffect(() => {
     const selectedTime = localStorage.getItem("selectedTime");
     if (!selectedTime) router.push("/");
@@ -58,15 +60,27 @@ const MenuPage: FC = () => {
 
   return (
     <>
+      <Cart
+        removeFromCart={removeFromCart}
+        open={showCart}
+        setOpen={setShowCart}
+        products={productsInCart}
+      />
       {isFetchedAfterMount && selectedTime ? (
         <div className="mx-auto mt-12 max-w-7xl sm:px-6 lg:px-8">
           {/* Cart Icon */}
+          <div className="flex w-full justify-end">
+            <button
+              type="button"
+              onClick={() => setShowCart((prev) => !prev)}
+              className="flex items-center justify-center rounded-lg bg-gray-200 p-3 text-lg font-medium text-indigo-600"
+            >
+              <BsCart className="mr-2 text-lg" />
+              {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
+            </button>
+          </div>
 
-          <button type="button" onClick={() => router.push("/")}>
-            Back to time selection
-          </button>
-
-          <Menu selectedTime={selectedTime} />
+          <Menu addToCart={addToCart} selectedTime={selectedTime} />
         </div>
       ) : (
         <div className="flex h-screen items-center justify-center">

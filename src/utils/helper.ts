@@ -8,14 +8,10 @@ import {
   isEqual,
   parse,
 } from "date-fns";
-import { categories, now, OPENING_HOURS_INTERVAL } from "src/constants/config";
+import { now, OPENING_HOURS_INTERVAL } from "src/constants/config";
 
 export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export const selectOptions = categories.map((category) => ({
-  value: category,
-  label: capitalize(category),
-}));
 
 export const weekdayIndexToName = (index: number) => {
   const days = [

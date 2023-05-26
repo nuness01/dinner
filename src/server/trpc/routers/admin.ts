@@ -75,20 +75,35 @@ export const adminRouter = router({
         imageKey: z.string(),
         name: z.string(),
         price: z.number(),
+        categories: z.array(
+          z.union([
+            z.literal("breakfast"),
+            z.literal("lunch"),
+            z.literal("dinner"),
+          ])
+        ),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { imageKey, name, price } = input;
+      const { imageKey, name, categories, price } = input;
+      const categoryObjects = categories.map((category) => ({
+        name: category,
+      }));
+
       const menuItem = await ctx.prisma.menuItem.create({
         data: {
           imageKey,
           name,
+          categories: {
+            create: categoryObjects, // Use the array of category objects
+          },
           price,
         },
       });
 
       return menuItem;
     }),
+
   deleteMenuItem: adminProcedure
     .input(z.object({ imageKey: z.string(), id: z.string() }))
     .mutation(async ({ input, ctx }) => {

@@ -18,8 +18,9 @@ model MenuItem {
   name       String   @db.VarChar(255)
   price      Float
   imageKey   String
-  active     Boolean  @default(true)
   categories Category[]
+  active     Boolean  @default(true)
+  
 }
 
 model Category {
