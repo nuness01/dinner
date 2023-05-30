@@ -5,10 +5,12 @@ import { trpc } from "src/utils/trpc";
 import "../styles/globals.css";
 import "../styles/calendar.css";
 import "../styles/Spinner.css";
+import Navbar from "@components/navbar";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ChakraProvider>
+      <Navbar />
       <Component {...pageProps} />
     </ChakraProvider>
   );

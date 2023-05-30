@@ -20,7 +20,7 @@ const index: FC<CalendarProps> = ({ days, closedDays }) => {
 
   const today = days.find((d) => d.dayOfWeek === now.getDay());
   const rounded = roundToNearestMinutes(now, OPENING_HOURS_INTERVAL);
-  const closing = parse(today!.closeTime, "kk:mm", now);
+  const closing = parse(today?.closeTime, "kk:mm", now);
   const tooLate = !isBefore(rounded, closing);
   if (tooLate) closedDays.push(formatISO(new Date().setHours(0, 0, 0, 0)));
 

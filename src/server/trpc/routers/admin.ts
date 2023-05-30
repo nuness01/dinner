@@ -14,6 +14,8 @@ export const adminRouter = router({
     .mutation(async ({ ctx, input }) => {
       const { res } = ctx;
       const { email, password } = input;
+      
+    
 
       if (
         email == process.env.ADMIN_EMAIL &&
