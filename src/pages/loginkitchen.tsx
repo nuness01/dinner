@@ -6,9 +6,9 @@ import { trpc } from "../utils/trpc";
 const login: FC = ({}) => {
   const router = useRouter();
 
-  const { mutate: login, error } = trpc.admin.login.useMutation({
+  const { mutate: login, error } = trpc.kitchen.login.useMutation({
     onSuccess: () => {
-      router.push("/dashboard");
+      router.push("/kitchen");
     },
   });
 
@@ -69,7 +69,6 @@ const login: FC = ({}) => {
               />
             </div>
           </div>
-
           <div>
             <button
               type="submit"

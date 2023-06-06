@@ -1,11 +1,17 @@
 import type { NextPage } from "next";
+
 import Image from "next/image";
-import dinner from "../assets/dinner.jpg";
+import dinner from "../assets/dinner2.jpg";
 
 const Home: NextPage = () => {
+  
   return (
     <>
-      <Image src={dinner} className=" z-auto max-w-full	" alt="dinner" />
+    <div >
+      <Image src={dinner} className=" mx-auto z-auto max-w-full	" alt="dinner" />
+      <button onClick={() => router.push("/about")}></button>
+      </div>
+     
     </>
   );
 };

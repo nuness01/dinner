@@ -41,7 +41,7 @@ export async function setUserCookie(res: NextResponse) {
 
   res.cookies.set("user-token", token, {
     httpOnly: true,
-    maxAge: 60 * 60 * 2, // 2 hours in seconds
+    maxAge: 60 * 60 * 2, 
   });
 
   return res;
