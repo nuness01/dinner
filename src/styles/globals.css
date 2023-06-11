@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .closed-day {
     background-color: #550000;
     color: white;

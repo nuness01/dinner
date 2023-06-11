@@ -1,22 +1,17 @@
 import Cart from "@components/Cart";
-import MenuKitchen from "@components/MenuKitchen";
+import MenuWaiter from "@components/MenuWaiter";
 import Spinner from "@components/Spinner";
-import { parseISO } from "date-fns";
-import { useRouter } from "next/router";
-import { type FC, useEffect, useState } from "react";
-import { now } from "src/constants/config";
+
+import { type FC, useState } from "react";
+
 import { trpc } from "src/utils/trpc";
 import { BsCart } from "react-icons/bs";
 
 const MenuPage: FC = () => {
-  const router = useRouter();
-
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(
     undefined,
     {
       onError: () => {
-        // Check for validity of selectedTime failed
         // Handle error accordingly (e.g. redirect to home page)
       },
     }
@@ -44,20 +39,6 @@ const MenuPage: FC = () => {
     setProductsInCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-
-
-  useEffect(() => {
-    const selectedTime = localStorage.getItem("selectedTime");
-    if (!selectedTime) router.push("/");
-    else {
-      const date = parseISO(selectedTime);
-      if (date < now) router.push("/");
-
-      // Date is valid
-      setSelectedTime(selectedTime);
-    }
-  }, [router]);
-
   return (
     <>
       <Cart
@@ -66,7 +47,7 @@ const MenuPage: FC = () => {
         setOpen={setShowCart}
         products={productsInCart}
       />
-      {isFetchedAfterMount && selectedTime ? (
+      {isFetchedAfterMount ? (
         <div className="mx-auto mt-12 max-w-7xl sm:px-6 lg:px-8">
           {/* Cart Icon */}
           <div className="flex w-full justify-end">
@@ -80,7 +61,7 @@ const MenuPage: FC = () => {
             </button>
           </div>
 
-          <MenuKitchen addToCart={addToCart} selectedTime={selectedTime} />
+          <MenuWaiter addToCart={addToCart} />
         </div>
       ) : (
         <div className="flex h-screen items-center justify-center">

@@ -8,7 +8,7 @@ import cookie from "cookie";
 import { TRPCError } from "@trpc/server";
 import { MAX_FILE_SIZE } from "src/constants/config";
 
-export const kitchenRouter = router({
+export const waiterRouter = router({
   login: publicProcedure
     .input(z.object({ email: z.string().email(), password: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -16,8 +16,8 @@ export const kitchenRouter = router({
       const { email, password } = input;
 
       if (
-        email == process.env.KITCHEN_EMAIL &&
-        password === process.env.KITCHEN_PASSWORD
+        email == process.env.WAITER_EMAIL &&
+        password === process.env.WAITER_PASSWORD
       ) {
         const token = await new SignJWT({})
           .setProtectedHeader({ alg: "HS256" })

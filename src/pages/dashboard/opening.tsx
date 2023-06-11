@@ -95,7 +95,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
           checked={enabled}
           onChange={setEnabled}
           className={classNames(
-            enabled ? "bg-indigo-600" : "bg-gray-200",
+            enabled ? "bg-gray-800" : "bg-gray-800",
             "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           )}
         >
@@ -112,7 +112,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
       </div>
 
       {!enabled ? (
-        <div className="my-12 flex flex-col gap-8">
+        <div className="my-12 flex flex-col gap-8 ">
           {days.map((day) => {
             const changeTime = _changeTime(day);
             return (
@@ -191,7 +191,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
             colorScheme="green"
             variant="solid"
           >
-            {dayIsClosed ? "Open shop this day" : "Close shop this day"}
+            {dayIsClosed ? "Abrir restaurante neste dia" : "Fechar restaurante neste dia"}
           </Button>
         </div>
       )}

@@ -6,9 +6,9 @@ import { trpc } from "../utils/trpc";
 const login: FC = ({}) => {
   const router = useRouter();
 
-  const { mutate: login, error } = trpc.kitchen.login.useMutation({
+  const { mutate: login, error } = trpc.waiter.login.useMutation({
     onSuccess: () => {
-      router.push("/kitchen");
+      router.push("/waiter");
     },
   });
 
@@ -23,7 +23,7 @@ const login: FC = ({}) => {
   };
 
   return (
-    <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-full pt-56 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">

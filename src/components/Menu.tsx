@@ -32,7 +32,7 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
               className="cursor-pointer"
               onClick={() => router.push("/")}
             />
-            On our menu for {format(parseISO(selectedTime), "MMM do, yyyy")}
+            O nosso menu para o dia {format(parseISO(selectedTime), "MMM do, yyyy")}
           </h2>
         </div>
 

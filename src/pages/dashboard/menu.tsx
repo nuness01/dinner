@@ -103,8 +103,11 @@ const Menu: FC = () => {
 
   return (
     <>
-      <div className="">
+      <div className="pt-32">
         <div className="mx-auto flex max-w-xl flex-col gap-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Nome do prato
+      </label>
           <input
             name="name"
             className="h-12 rounded-sm border-none bg-gray-200"
@@ -113,7 +116,9 @@ const Menu: FC = () => {
             onChange={handleTextChange}
             value={input.name}
           />
-
+<label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Preço
+      </label>
           <input
             name="price"
             className="h-12 rounded-sm border-none bg-gray-200"
@@ -141,7 +146,7 @@ const Menu: FC = () => {
                   />
                 </div>
               ) : (
-                <span>Select image</span>
+                <span className="flex"><svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>Upload da imagem</span>
               )}
             </div>
             <input
@@ -159,13 +164,13 @@ const Menu: FC = () => {
             disabled={!input.file || !input.name}
             onClick={addMenuItem}
           >
-            Add menu item
+            Adicionar
           </button>
         </div>
         {error && <p className="text-xs text-red-600">{error}</p>}
 
         <div className="mx-auto mt-12 max-w-7xl">
-          <p className="text-lg font-medium">Your menu items:</p>
+          
           <div className="mb-12 mt-6 grid grid-cols-4 gap-8">
             {menuItems?.map((menuItem) => (
               <div key={menuItem.id}>
