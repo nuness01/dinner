@@ -1,5 +1,5 @@
 .react-calendar {
-    width: 450px;
+    width: 700px;
     max-width: 100%;
     background: white;
     border-radius: 15px;
@@ -145,7 +145,7 @@
   }
   .react-calendar__tile:disabled {
     background-color: #f0f0f0;
-    color: rgb(107 114 128);
+    color: #b3b3b3;
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {

@@ -39,7 +39,7 @@ const index: FC<CalendarProps> = ({ days, closedDays }) => {
   const times = date.justDate && getOpeningTimes(date.justDate, days);
 
   return (
-    <div className="flex pt-56 items-center justify-center">
+    <div className="flex py-36 items-center justify-center">
       {date.justDate ? (
         <div className="flex max-w-lg flex-wrap gap-4">
           {times?.map((time, i) => (

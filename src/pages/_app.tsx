@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import "../styles/calendar.css";
 import "../styles/Spinner.css";
 import Navbar from "@components/navbar";
+import Footer from "@components/footer";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -16,11 +17,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <title>Dinner</title>
         <link rel="icon" href="../assets/dinner.jpg" />
       </Head>
-      
-        <Navbar />
 
-        <Component {...pageProps} />
-      
+      <Navbar />
+
+      <Component {...pageProps} />
+      <Footer />
     </ChakraProvider>
   );
 };
