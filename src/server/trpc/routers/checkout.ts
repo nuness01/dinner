@@ -44,7 +44,7 @@ export const checkoutRouter = router({
           mode: 'payment',
           line_items: productsInCart.map((product) => ({
             price_data: {
-              currency: 'usd',
+              currency: 'eur',
               product_data: {
                 name: product.name,
               },
@@ -58,7 +58,7 @@ export const checkoutRouter = router({
                 type: 'fixed_amount',
                 fixed_amount: {
                   amount: 0,
-                  currency: 'usd',
+                  currency: 'eur',
                 },
                 display_name: 'Pickup in store',
               },

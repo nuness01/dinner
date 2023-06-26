@@ -16,7 +16,8 @@ const CalendarHome: NextPage<HomeProps> = ({ days, closedDays }) => {
   return (
     <>
       
-      <main>
+      <main className="h-screen">
+      <h1 className="py-24 text-center text-3xl font-bold text-gray-800 md:text-5xl ">Escolha o dia e a hora</h1>
         <Calendar days={days} closedDays={closedDays} />
       </main>
     </>

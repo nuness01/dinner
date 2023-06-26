@@ -2,10 +2,7 @@ import Image from "next/image";
 import { Button } from "@chakra-ui/react";
 import { type FC, useState } from "react";
 import { HiArrowLeft } from "react-icons/hi";
-import Select from "react-select";
-import { selectOptions } from "src/utils/helper";
 import { trpc } from "src/utils/trpc";
-import { format, parseISO } from "date-fns";
 import { useRouter } from "next/router";
 
 interface MenuProps {
@@ -24,13 +21,13 @@ const Menu: FC<MenuProps> = ({ addToCart }) => {
   });
 
   return (
-    <div className="bg-white">
+    <div className="bg-white h-screen">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:py-24 lg:max-w-full">
         <div className="flex w-full justify-between">
           <h2 className="flex items-center gap-4 text-2xl font-bold tracking-tight text-gray-900">
             <HiArrowLeft
               className="cursor-pointer"
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/waiter")}
             />
           </h2>
         </div>

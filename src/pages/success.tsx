@@ -2,6 +2,8 @@ import { Spinner } from "@chakra-ui/react";
 import Link from "next/link";
 import { type FC, useState, useEffect } from "react";
 import { trpc } from "src/utils/trpc";
+import successImg from "../assets/knife-and-fork-2754149_1280.jpg";
+import Image from "next/image";
 
 const success: FC = ({}) => {
   const [products, setProducts] = useState<
@@ -34,10 +36,13 @@ const success: FC = ({}) => {
   return (
     <main className="relative lg:min-h-full">
       <div className="h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-hero.jpg"
-          alt="TODO"
-          className="h-full w-full object-cover object-center"
+        <Image
+          src={successImg}
+          width="420"
+          className={"h-full w-full object-cover object-center"}
+          alt="Hero Illustration"
+          loading="eager"
+          placeholder="blur"
         />
       </div>
 
@@ -45,18 +50,19 @@ const success: FC = ({}) => {
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
           <div className="lg:col-start-2">
             <h1 className="text-sm font-medium text-indigo-600">
-              Payment successful
+              Pagamento aceite
             </h1>
             <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-              Thanks for ordering
+              Obrigado pelo pedido!
             </p>
             <p className="mt-2 text-base text-gray-500">
-              We appreciate your order, we’re currently processing it. So hang
-              tight and we’ll send you confirmation very soon!
+              Agradecemos a sua encomenda, estamos atualmente a processá-la.
+              Então fique firme e nós lhe enviaremos a confirmação muito em
+              breve!
             </p>
 
             <dl className="mt-16 text-sm font-medium">
-              <dt className="text-gray-900">Your order summary</dt>
+              <dt className="text-gray-900">Seu pedido</dt>
             </dl>
 
             <ul

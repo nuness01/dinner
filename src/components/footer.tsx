@@ -6,7 +6,7 @@ import Image from "next/image";
 const index = () => {
 
   return (
-    <div className="pt-12">
+    
       <footer id="footer" className="relative z-50 dark:bg-gray-900">
         <div className=" border-b border-t border-gray-200 py-7 dark:border-gray-700">
           <div className="container mx-auto px-4 xl:px-12 2xl:px-4">
@@ -153,7 +153,7 @@ const index = () => {
           </p>
         </div>
       </footer>
-    </div>
+    
   );
 };
 export default index;

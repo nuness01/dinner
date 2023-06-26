@@ -7,7 +7,7 @@
 }
 
 .closed-day {
-    background-color: #550000;
+    background-color: #550000 !important;
     color: white;
   }
   

@@ -2,12 +2,12 @@ import Cart from "@components/Cart";
 import MenuWaiter from "@components/MenuWaiter";
 import Spinner from "@components/Spinner";
 
-import { type FC, useState } from "react";
+import { useState } from "react";
 
 import { trpc } from "src/utils/trpc";
 import { BsCart } from "react-icons/bs";
 
-const MenuPage: FC = () => {
+const MenuPage = () => {
   const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(
     undefined,
     {

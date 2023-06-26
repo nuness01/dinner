@@ -164,7 +164,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
             colorScheme="green"
             variant="solid"
           >
-            Save
+            Guardar
           </Button>
         </div>
       ) : (

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import Image from "next/image";
-import heroImg from "../assets/chef.png";
+import heroImg from "../assets/hero.webp";
 import Link from "next/link";
 
 const Home: NextPage = () => {
@@ -30,18 +30,18 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-full items-center justify-center lg:w-1/2">
-          <div className="">
+        <div className="py-6 flex w-full items-center justify-center lg:w-1/2">
+          
             <Image
               src={heroImg}
-              width="320"
-              height="617"
+              width="420"
+              
               className={"object-cover hidden md:flex"}
               alt="Hero Illustration"
               loading="eager"
               placeholder="blur"
             />
-          </div>
+          
         </div>
       </div>
     </>

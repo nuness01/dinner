@@ -39,9 +39,9 @@ const index: FC<CalendarProps> = ({ days, closedDays }) => {
   const times = date.justDate && getOpeningTimes(date.justDate, days);
 
   return (
-    <div className="flex py-36 items-center justify-center">
+    <div className="flex py-8 items-center justify-center">
       {date.justDate ? (
-        <div className="flex max-w-lg flex-wrap gap-4">
+        <div className="flex max-w-lg flex-wrap gap-4 justify-center">
           {times?.map((time, i) => (
             <div className="rounded-sm bg-gray-100 p-2" key={`time-${i}`}>
               <button
