@@ -1,5 +1,5 @@
 import Link from "next/link";
-import logo from "../assets/logo-nav.svg";
+import logo from "../assets/logo-footer.png";
 import Image from "next/image";
 
 
@@ -145,7 +145,7 @@ const index = () => {
         </div>
         <div className="flex flex-col items-center justify-center py-7">
         <Link href="/" className="flex items-center gap-1">
-          <Image src={logo}  alt="logo" />
+          <Image src={logo} width="60"  alt="logo" />
         </Link>
 
           <p className="mt-6 text-xs leading-none text-gray-900 dark:text-gray-50 lg:text-sm">
