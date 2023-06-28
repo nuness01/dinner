@@ -12,6 +12,7 @@ const success: FC = ({}) => {
 
   // tRPC
   const { data: itemsInCart } = trpc.menu.getCartItems.useQuery(products || []);
+  
   const total = (
     itemsInCart?.reduce(
       (acc, item) =>
@@ -69,23 +70,33 @@ const success: FC = ({}) => {
               role="list"
               className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500"
             >
-              {itemsInCart?.map((item) => (
-                <li key={item.id} className="flex space-x-6 py-6">
-                  <img
-                    src={item.url}
-                    alt={item.name}
-                    className="h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center"
-                  />
-                  <div className="flex-auto space-y-1">
-                    <h3 className="text-gray-900">
-                      <p>{item.name}</p>
-                    </h3>
-                  </div>
-                  <p className="flex-none font-medium text-gray-900">
-                    €{item.price.toFixed(2)}
-                  </p>
-                </li>
-              ))}
+              {itemsInCart?.map((item) => {
+                const thisItem = products.find(
+                  (product: { id: string; }) => product.id === item.id
+                );
+                return (
+                  <li key={item.id} className="flex space-x-6 py-6">
+                    <Image
+                      src={item.url}
+                      width={500} 
+                      height={500}
+                      alt={item.name}
+                      className="h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center"
+                    />
+                    <div className="flex-auto space-y-1">
+                      <h3 className="text-gray-900">
+                        <p>{item.name}</p>
+                      </h3>
+                    </div>
+                    <div className="grid">
+                    <p className="flex-none font-medium text-gray-900">
+                      €{item.price.toFixed(2)}
+                    </p>
+                    <p className="text-gray-500 ">Qty {thisItem?.quantity}</p></div>
+                    
+                  </li>
+                );
+              })}
             </ul>
 
             <dl className="space-y-6 pt-6 text-sm font-medium text-gray-500">

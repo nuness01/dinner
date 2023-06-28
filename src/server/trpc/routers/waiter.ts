@@ -1,9 +1,9 @@
 import { s3 } from "@lib/s3";
 import { z } from "zod";
-import { adminProcedure, publicProcedure, router } from "../trpc";
+import { publicProcedure, router, waiterProcedure } from "../trpc";
 import { SignJWT } from "jose";
 import { nanoid } from "nanoid";
-import { getJwtSecretKey } from "../../../lib/auth";
+import { getJwtSecretKeyWaiter } from "../../../lib/auth";
 import cookie from "cookie";
 import { TRPCError } from "@trpc/server";
 import { MAX_FILE_SIZE } from "src/constants/config";
@@ -24,7 +24,7 @@ export const waiterRouter = router({
           .setJti(nanoid())
           .setIssuedAt()
           .setExpirationTime("1h")
-          .sign(new TextEncoder().encode(getJwtSecretKey()));
+          .sign(new TextEncoder().encode(getJwtSecretKeyWaiter()));
 
         res.setHeader(
           "Set-Cookie",
@@ -42,7 +42,7 @@ export const waiterRouter = router({
         message: "Invalid email or password",
       });
     }),
-  createPresignedUrl: adminProcedure
+  createPresignedUrl: waiterProcedure
     .input(z.object({ fileType: z.string() }))
     .mutation(async ({ input }) => {
       const id = nanoid();

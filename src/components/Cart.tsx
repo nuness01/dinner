@@ -1,9 +1,9 @@
 import { Spinner } from '@chakra-ui/react'
 import { Dialog, Transition } from '@headlessui/react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Fragment, type Dispatch, type FC, type SetStateAction } from 'react'
 import { HiX } from 'react-icons/hi'
-import { capitalize } from 'src/utils/helper'
 import { trpc } from 'src/utils/trpc'
 
 interface CartProps {
@@ -85,8 +85,10 @@ const Cart: FC<CartProps> = ({ open, setOpen, products, removeFromCart }) => {
                               return (
                                 <li key={item.id} className='flex py-6'>
                                   <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
-                                    <img
+                                    <Image
                                       src={item.url}
+                                      width={500}
+                                      height={500}
                                       alt={item.name}
                                       className='h-full w-full object-cover object-center'
                                     />

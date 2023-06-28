@@ -23,11 +23,11 @@ const login: FC = ({}) => {
   };
 
   return (
-    <div className="flex min-h-full pt-56 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-full h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-            Sign in to your account
+            Sign in to waiter account
           </h2>
         </div>
         <form className="mt-8 space-y-6">

@@ -23,14 +23,19 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
 
   return (
     <div className="bg-white h-screen">
+      
       <div className="mx-auto max-w-2xl px-4 py-16 sm:py-24 lg:max-w-full">
+      
         <div className="flex w-full justify-between">
+        <h1 className="text-center text-3xl font-bold text-gray-800 md:text-5xl ">
+                    Menu
+                  </h1>
           <h2 className="flex items-center gap-4 text-2xl font-bold tracking-tight text-gray-900">
             <HiArrowLeft
               className="cursor-pointer"
               onClick={() => router.push("/")}
             />
-            O nosso menu para o dia {format(parseISO(selectedTime), "MMM do, yyyy")}
+            O nosso menu para o dia {format(parseISO(selectedTime), "do MMM, yyyy")}
           </h2>
         </div>
 
