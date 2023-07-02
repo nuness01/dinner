@@ -121,7 +121,7 @@ const Contact = () => {
                   </div>
                   <div className="ml-6 grow">
                     <p className="mb-2 font-bold ">Suporte Geral</p>
-                    <p className="text-neutral-500 ">support@example.com</p>
+                    <p className="text-neutral-500 ">dinnerdinner2023@gmail.com</p>
                     <p className="text-neutral-500 ">+1 234-567-89</p>
                   </div>
                 </div>

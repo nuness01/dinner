@@ -1,5 +1,8 @@
-import Link from "next/link";
+import Image from "next/image";
 import React from "react";
+import cafeImg from "../assets/cafe.jpg";
+import drinkImg from "../assets/restaurant.jpg";
+import resImg from "../assets/healthy.jpg";
 
 const About1 = () => {
   return (
@@ -11,15 +14,19 @@ const About1 = () => {
               <div className="-mx-3 flex items-center sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="py-3 pl-3 sm:py-4">
-                    <img
-                      src="https://i.ibb.co/gFb3ns6/image-1.jpg"
+                    <Image
+                      src={cafeImg}
+                      width={190}
+                      height={225}
                       alt=""
                       className="w-full rounded-2xl"
                     />
                   </div>
                   <div className="py-3 pl-3 sm:py-4">
-                    <img
-                      src="https://i.ibb.co/rfHFq15/image-2.jpg"
+                  <Image
+                      src={drinkImg}
+                      width={190}
+                      height={225}
                       alt=""
                       className="w-full rounded-2xl"
                     />
@@ -27,8 +34,10 @@ const About1 = () => {
                 </div>
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="relative z-10 my-4">
-                    <img
-                      src="https://i.ibb.co/9y7nYCD/image-3.jpg"
+                  <Image
+                      src={resImg}
+                      width={190}
+                      height={225}
                       alt=""
                       className="w-full rounded-2xl"
                     />
