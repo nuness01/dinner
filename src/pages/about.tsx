@@ -16,8 +16,8 @@ const About1 = () => {
                   <div className="py-3 pl-3 sm:py-4">
                     <Image
                       src={cafeImg}
-                      width={190}
-                      height={225}
+                      width={270}
+                      height={400}
                       alt=""
                       className="w-full rounded-2xl"
                     />
@@ -25,8 +25,8 @@ const About1 = () => {
                   <div className="py-3 pl-3 sm:py-4">
                   <Image
                       src={drinkImg}
-                      width={190}
-                      height={225}
+                      width={270}
+                      height={400}
                       alt=""
                       className="w-full rounded-2xl"
                     />
@@ -36,8 +36,8 @@ const About1 = () => {
                   <div className="relative z-10 my-4">
                   <Image
                       src={resImg}
-                      width={190}
-                      height={225}
+                      width={270}
+                      height={400}
                       alt=""
                       className="w-full rounded-2xl"
                     />
